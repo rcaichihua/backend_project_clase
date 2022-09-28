@@ -1,6 +1,7 @@
 import Server from './app/server/server';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { userRoutes } from './app/routes/user.route';
 
 const server = Server.instance;
 
@@ -15,6 +16,8 @@ server.app.get('/', (req, res) => {
     msg: 'APIs operativas'
   });
 });
+
+server.app.use('/', userRoutes);
 
 server.start(() => {
   console.log(`Servidor corriendo en el puerto ${server.port}`);
