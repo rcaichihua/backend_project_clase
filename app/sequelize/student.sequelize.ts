@@ -33,7 +33,7 @@ StudentSequelize.init(
       autoIncrement: true
     },
     dni: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(15),
       allowNull: false
     },
     lastName: {
