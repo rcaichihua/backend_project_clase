@@ -1,22 +1,23 @@
-import { User } from '../interfaces/user.interface';
 import { DataTypes, Model } from 'sequelize';
+import { Guardian } from '../interfaces/guardian.interface';
 import Server from '../server/server';
-import { EmployeeSequelize } from './employee.sequelize';
-import { RolUserSequelize } from './rol-user.sequelize';
 import { StudentSequelize } from './student.sequelize';
 
 const sequelize = Server.sequelize;
 
-export class UserSequelize extends Model implements User {
+export class GuardianSequelize extends Model implements Guardian {
   id!: number;
+  dni!: string;
+  lastName!: string;
   name!: string;
-  password!: string;
-  lastLogin!: Date;
+  email!: string;
+  phone!: number;
   readonly updatedAt!: Date;
   readonly createdAt!: Date;
+  idGender!: number;
 }
 
-UserSequelize.init(
+GuardianSequelize.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,16 +26,24 @@ UserSequelize.init(
       primaryKey: true,
       autoIncrement: true
     },
+    dni: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING(150),
+      allowNull: false
+    },
     name: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(70),
       allowNull: false
     },
-    password: {
-      type: DataTypes.STRING(250),
+    email: {
+      type: DataTypes.STRING(200),
       allowNull: false
     },
-    lastLogin: {
-      type: DataTypes.DATE,
+    phone: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     updatedAt: {
@@ -47,25 +56,13 @@ UserSequelize.init(
     }
   },
   {
-    tableName: 'users',
+    tableName: 'guardian',
     sequelize
   }
-)
+);
 
-UserSequelize.hasOne(EmployeeSequelize, {
+GuardianSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
-  foreignKey: 'idUser',
-  as: 'employee'
-});
-
-UserSequelize.hasMany(RolUserSequelize, {
-  sourceKey: 'id',
-  foreignKey: 'idUser',
-  as: 'rol-users'
-});
-
-UserSequelize.hasMany(StudentSequelize, {
-  sourceKey: 'id',
-  foreignKey: 'idUser',
+  foreignKey: 'idGuardian',
   as: 'students'
 });
