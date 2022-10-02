@@ -3,4 +3,4 @@ import { listUser } from '../controllers/user.controller';
 
 export const userRoutes = Router();
 
-userRoutes.get('/users', listUser);
+userRoutes.get('/', listUser);

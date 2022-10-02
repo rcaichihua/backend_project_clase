@@ -4,7 +4,6 @@ import { UserSequelize } from '../sequelize/user.sequelize';
 export const listUser = async (req: Request, res: Response) => {
   try {
     const users = await UserSequelize.findAll();
-    console.log(users);
     return res.json(users);
   }
   catch (e) {

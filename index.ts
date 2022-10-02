@@ -2,6 +2,7 @@ import Server from './app/server/server';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { userRoutes } from './app/routes/user.route';
+import { rolRoutes } from './app/routes/rol.route';
 
 const server = Server.instance;
 
@@ -17,7 +18,8 @@ server.app.get('/', (req, res) => {
   });
 });
 
-server.app.use('/', userRoutes);
+server.app.use('/user', userRoutes);
+server.app.use('/rol', rolRoutes);
 
 server.start(() => {
   console.log(`Servidor corriendo en el puerto ${server.port}`);
