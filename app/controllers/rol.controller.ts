@@ -3,8 +3,8 @@ import { RolSequelize } from '../sequelize/rol.sequelize';
 
 export const listRol = async (req: Request, res: Response) => {
   try {
-    const rol = await RolSequelize.findAll();
-    return res.json(rol);
+    const roles = await RolSequelize.findAll();
+    return res.json(roles);
   }
   catch (e) {
     return res.status(404).json({
@@ -24,7 +24,7 @@ export const getRol = async (req: Request, res: Response) => {
     }
 
     return res.json({
-      message: `El cliente no existe`
+      message: `El rol no existe`
     })
   }
   catch (e) {
