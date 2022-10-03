@@ -23,7 +23,7 @@ export const getGender = async (req: Request, res: Response) => {
       return res.json(gender);
     }
 
-    return res.json({
+    return res.status(400).json({
       message: `El género no existe`
     })
   }
@@ -70,7 +70,7 @@ export const updateGender = async (req: Request, res: Response) => {
       return res.json(updatedGender);
     }
 
-    return res.json({
+    return res.status(400).json({
       message: 'No se encontro datos que actualizar'
     });
 
@@ -81,3 +81,32 @@ export const updateGender = async (req: Request, res: Response) => {
     });
   }
 }
+
+export const deleteGender = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+
+    const deleteRol = await GenderSequelize.destroy({
+      where: {
+        id: id
+      }
+    });
+
+    if (deleteRol) {
+      return res.json({
+        message: 'Se elimino el género correctamente'
+      });
+    }
+
+    return res.status(400).json({
+      message: 'El género que intenta eliminar no existe '
+    });
+  }
+  catch (e) {
+    return res.status(404).json({
+      message: 'Error',
+      detail: e
+    });
+  }
+}
+
