@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { userRoutes } from './app/routes/user.route';
 import { rolRoutes } from './app/routes/rol.route';
+import { genderRoute } from './app/routes/gender.route';
 
 const server = Server.instance;
 
@@ -20,6 +21,7 @@ server.app.get('/', (req, res) => {
 
 server.app.use('/user', userRoutes);
 server.app.use('/rol', rolRoutes);
+server.app.use('/gender', genderRoute);
 
 server.start(() => {
   console.log(`Servidor corriendo en el puerto ${server.port}`);
