@@ -1,9 +1,10 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import { Sequelize } from 'sequelize';
-import http from 'http';
 import { SERVER_PORT } from '../../environments/server.environment';
 import db from '../../config/connection';
-
+import { Route } from '../interfaces/route.interface';
 export default class Server {
   private static _instance: Server;
 
@@ -12,15 +13,12 @@ export default class Server {
 
   private static _sequelize: Sequelize;
 
-  private readonly httpServer: http.Server;
-
   constructor() {
     this.app = express();
     this.port = SERVER_PORT;
 
-    this.httpServer = new http.Server(this.app);
-
     this.dbConnection();
+    this.configMiddlewares();
   }
 
   public static get instance(): Server {
@@ -31,18 +29,34 @@ export default class Server {
     return this._sequelize || (this._sequelize = db);
   }
 
+  public configMiddlewares() {
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json());
+    this.app.use(cors({ origin: true, credentials: true }));
+    this.app.get('/', (req, res) => {
+      res.status(200).json({
+        status: 'OK',
+        msg: 'APIs operativas',
+      });
+    });
+  }
+
+  public configRouter(routes: Route[]) {
+    routes.forEach(route => {
+      this.app.use(route.path, route.router);
+    })
+  }
+
   start(callback: () => void): void {
-    this.httpServer.listen(this.port, callback);
+    this.app.listen(this.port, callback);
   }
 
   async dbConnection() {
     try {
       await Server.sequelize.authenticate();
       console.log('Base de datos esta en linea');
-    }
-    catch (e) {
+    } catch (e) {
       console.log('Error en la base de datos');
     }
   }
-
 }
