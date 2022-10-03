@@ -23,7 +23,7 @@ export const getRol = async (req: Request, res: Response) => {
       return res.json(rol);
     }
 
-    return res.json({
+    return res.status(400).json({
       message: `El rol no existe`
     })
   }
@@ -49,7 +49,7 @@ export const updateRol = async (req: Request, res: Response) => {
       return res.json(updatedRol);
     }
 
-    return res.json({
+    return res.status(400).json({
       message: 'No se encontro datos que actualizar'
     });
 
