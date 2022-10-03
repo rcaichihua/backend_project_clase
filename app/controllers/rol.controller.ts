@@ -44,11 +44,9 @@ export const updateRol = async (req: Request, res: Response) => {
     const rol = await RolSequelize.findByPk(id);
 
     if (rol && (name || description)) {
-      await rol.update({name, description});
+      const updatedRol = await rol.update({name, description});
 
-      return res.json({
-        message: `Se actualizó el rol ${name} con éxito`
-      });
+      return res.json(updatedRol);
     }
 
     return res.json({
