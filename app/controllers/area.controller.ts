@@ -24,7 +24,7 @@ export const getArea = async (req: Request, res: Response) => {
     }
 
     return res.status(400).json({
-      message: `El area no existe`
+      message: `El área no existe`
     });
   }
   catch (e) {
