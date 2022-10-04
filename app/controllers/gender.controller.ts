@@ -25,7 +25,7 @@ export const getGender = async (req: Request, res: Response) => {
 
     return res.status(400).json({
       message: `El género no existe`
-    })
+    });
   }
   catch (e) {
     return res.status(404).json({
@@ -41,7 +41,7 @@ export const createGender = async (req: Request, res: Response) => {
 
     if (name === undefined) {
       return res.status(400).json({
-        message: 'No se encontró ningun nombre'
+        message: 'No se encontró ningun género'
       });
     }
 
@@ -86,13 +86,13 @@ export const deleteGender = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
 
-    const deleteRol = await GenderSequelize.destroy({
+    const deleteGender = await GenderSequelize.destroy({
       where: {
         id: id
       }
     });
 
-    if (deleteRol) {
+    if (deleteGender) {
       return res.json({
         message: 'Se elimino el género correctamente'
       });
