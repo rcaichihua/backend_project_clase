@@ -9,6 +9,8 @@ import { genderRoute } from './app/routes/gender.route';
 import { areaRoute } from './app/routes/area.route';
 import { criterionRoute } from './app/routes/criterion.route';
 import { authRoutes } from './app/routes/auth.route';
+import { shiftRoute } from './app/routes/shift.route';
+import { gradeRoute } from './app/routes/grade.route';
 
 const server = Server.instance;
 
@@ -19,6 +21,8 @@ server.configRouter([
   { path: '/gender', router: genderRoute },
   { path: '/area', router: areaRoute },
   { path: '/criterion', router: criterionRoute },
+  { path: '/shift', router: shiftRoute },
+  { path: '/grade', router: gradeRoute },
 ])
 
 server.start(() => {

@@ -5,14 +5,13 @@ export const listCriterion = async (req: Request, res: Response) => {
   try {
     const criteria = await CriterionSequelize.findAll();
     return res.json(criteria);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const getCriterion = async (req: Request, res: Response) => {
   try {
@@ -26,36 +25,33 @@ export const getCriterion = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: `El criterio no existe`
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const createCriterion = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
 
-    if (name === undefined) {
-      return res.status(400).json({
-        message: 'No se encontró ningun criterio'
-      });
+    if (name) {
+      const criterion = await CriterionSequelize.create({name});
+      return res.status(202).json(criterion);
     }
 
-    const criterion = await CriterionSequelize.create({name});
-
-    return res.status(202).json(criterion);
-  }
-  catch (e) {
+    return res.status(400).json({
+      message: 'No se encontró ningun criterio'
+    });
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const updateCriterion = async (req: Request, res: Response) => {
   try {
@@ -80,7 +76,7 @@ export const updateCriterion = async (req: Request, res: Response) => {
       detail: e
     });
   }
-}
+};
 
 export const deleteCriterion = async (req: Request, res: Response) => {
   try {
@@ -101,11 +97,10 @@ export const deleteCriterion = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: 'El criterio que intenta eliminar no existe '
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};

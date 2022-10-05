@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { AreaSequelize } from '../sequelize/area.sequelize';
+import { ShiftSequelize } from '../sequelize/shift.sequelize';
 
-export const listArea = async (req: Request, res: Response) => {
+export const listShift = async (req: Request, res: Response) => {
   try {
-    const areas = await AreaSequelize.findAll();
-    return res.json(areas);
+    const shifts = await ShiftSequelize.findAll();
+    return res.json(shifts);
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
@@ -13,17 +13,17 @@ export const listArea = async (req: Request, res: Response) => {
   }
 };
 
-export const getArea = async (req: Request, res: Response) => {
+export const getShift = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    const area = await AreaSequelize.findByPk(id);
+    const shift = await ShiftSequelize.findByPk(id);
 
-    if (area) {
-      return res.json(area);
+    if (shift) {
+      return res.json(shift);
     }
 
     return res.status(400).json({
-      message: `El área no existe`
+      message: `El turno no existe`
     });
   } catch (e) {
     return res.status(404).json({
@@ -33,17 +33,17 @@ export const getArea = async (req: Request, res: Response) => {
   }
 };
 
-export const createArea = async (req: Request, res: Response) => {
+export const createShift = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
 
     if (name) {
-      const area = await AreaSequelize.create({name});
-      return res.status(202).json(area);
+      const shift = await ShiftSequelize.create({name});
+      return res.status(202).json(shift);
     }
 
     return res.status(400).json({
-      message: 'No se encontró ningun área'
+      message: 'No se encontró ningun turno'
     });
   } catch (e) {
     return res.status(404).json({
@@ -53,17 +53,17 @@ export const createArea = async (req: Request, res: Response) => {
   }
 };
 
-export const updateArea = async (req: Request, res: Response) => {
+export const updateShift = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const name = req.body.name;
 
-    const area = await AreaSequelize.findByPk(id);
+    const shift = await ShiftSequelize.findByPk(id);
 
-    if (area && name) {
-      const updatedArea = await area.update({name});
+    if (shift && name) {
+      const updatedShift = await shift.update({name});
 
-      return res.json(updatedArea);
+      return res.json(updatedShift);
     }
 
     return res.status(400).json({
@@ -78,24 +78,24 @@ export const updateArea = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteArea = async (req: Request, res: Response) => {
+export const deleteShift = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
 
-    const deleteArea = await AreaSequelize.destroy({
+    const deleteShift = await ShiftSequelize.destroy({
       where: {
         id: id
       }
     });
 
-    if (deleteArea) {
+    if (deleteShift) {
       return res.json({
-        message: 'Se elimino el área correctamente'
+        message: 'Se elimino el turno correctamente'
       });
     }
 
     return res.status(400).json({
-      message: 'El área que intenta eliminar no existe '
+      message: 'El turno que intenta eliminar no existe '
     });
   } catch (e) {
     return res.status(404).json({
