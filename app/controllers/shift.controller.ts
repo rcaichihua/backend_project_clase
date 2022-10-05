@@ -5,14 +5,13 @@ export const listShift = async (req: Request, res: Response) => {
   try {
     const shifts = await ShiftSequelize.findAll();
     return res.json(shifts);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const getShift = async (req: Request, res: Response) => {
   try {
@@ -26,36 +25,33 @@ export const getShift = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: `El turno no existe`
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const createShift = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
 
-    if (name === undefined) {
-      return res.status(400).json({
-        message: 'No se encontró ningun turno'
-      });
+    if (name) {
+      const shift = await ShiftSequelize.create({name});
+      return res.status(202).json(shift);
     }
 
-    const shift = await ShiftSequelize.create({name});
-
-    return res.status(202).json(shift);
-  }
-  catch (e) {
+    return res.status(400).json({
+      message: 'No se encontró ningun turno'
+    });
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const updateShift = async (req: Request, res: Response) => {
   try {
@@ -80,7 +76,7 @@ export const updateShift = async (req: Request, res: Response) => {
       detail: e
     });
   }
-}
+};
 
 export const deleteShift = async (req: Request, res: Response) => {
   try {
@@ -101,11 +97,10 @@ export const deleteShift = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: 'El turno que intenta eliminar no existe '
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};

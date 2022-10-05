@@ -5,14 +5,13 @@ export const listGender = async (req: Request, res: Response) => {
   try {
     const genders = await GenderSequelize.findAll();
     return res.json(genders);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const getGender = async (req: Request, res: Response) => {
   try {
@@ -26,36 +25,33 @@ export const getGender = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: `El género no existe`
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const createGender = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
 
-    if (name === undefined) {
-      return res.status(400).json({
-        message: 'No se encontró ningun género'
-      });
+    if (name) {
+      const gender = await GenderSequelize.create({name});
+      return res.status(202).json(gender);
     }
 
-    const gender = await GenderSequelize.create({name});
-
-    return res.status(202).json(gender);
-  }
-  catch (e) {
+    return res.status(400).json({
+      message: 'No se encontró ningun género'
+    });
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const updateGender = async (req: Request, res: Response) => {
   try {
@@ -80,7 +76,7 @@ export const updateGender = async (req: Request, res: Response) => {
       detail: e
     });
   }
-}
+};
 
 export const deleteGender = async (req: Request, res: Response) => {
   try {
@@ -101,12 +97,11 @@ export const deleteGender = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: 'El género que intenta eliminar no existe '
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 

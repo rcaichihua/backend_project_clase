@@ -5,14 +5,13 @@ export const listArea = async (req: Request, res: Response) => {
   try {
     const areas = await AreaSequelize.findAll();
     return res.json(areas);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const getArea = async (req: Request, res: Response) => {
   try {
@@ -26,36 +25,33 @@ export const getArea = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: `El área no existe`
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const createArea = async (req: Request, res: Response) => {
   try {
     const name = req.body.name;
 
-    if (name === undefined) {
-      return res.status(400).json({
-        message: 'No se encontró ningun área'
-      });
+    if (name) {
+      const area = await AreaSequelize.create({name});
+      return res.status(202).json(area);
     }
 
-    const area = await AreaSequelize.create({name});
-
-    return res.status(202).json(area);
-  }
-  catch (e) {
+    return res.status(400).json({
+      message: 'No se encontró ningun área'
+    });
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const updateArea = async (req: Request, res: Response) => {
   try {
@@ -80,7 +76,7 @@ export const updateArea = async (req: Request, res: Response) => {
       detail: e
     });
   }
-}
+};
 
 export const deleteArea = async (req: Request, res: Response) => {
   try {
@@ -101,11 +97,10 @@ export const deleteArea = async (req: Request, res: Response) => {
     return res.status(400).json({
       message: 'El área que intenta eliminar no existe '
     });
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};

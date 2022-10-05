@@ -5,14 +5,13 @@ export const listRol = async (req: Request, res: Response) => {
   try {
     const roles = await RolSequelize.findAll();
     return res.json(roles);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const getRol = async (req: Request, res: Response) => {
   try {
@@ -25,15 +24,14 @@ export const getRol = async (req: Request, res: Response) => {
 
     return res.status(400).json({
       message: `El rol no existe`
-    })
-  }
-  catch (e) {
+    });
+  } catch (e) {
     return res.status(404).json({
       message: 'Error',
       detail: e
     });
   }
-}
+};
 
 export const updateRol = async (req: Request, res: Response) => {
   try {
@@ -59,4 +57,4 @@ export const updateRol = async (req: Request, res: Response) => {
       detail: e
     });
   }
-}
+};
