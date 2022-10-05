@@ -28,6 +28,7 @@ GuardianSequelize.init(
     },
     dni: {
       type: DataTypes.STRING(20),
+      unique: true,
       allowNull: false
     },
     lastName: {

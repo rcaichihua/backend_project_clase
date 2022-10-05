@@ -30,6 +30,7 @@ EmployeeSequelize.init(
     },
     dni: {
       type: DataTypes.STRING(15),
+      unique: true,
       allowNull: false
     },
     lastName: {
