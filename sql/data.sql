@@ -11,18 +11,18 @@ INSERT INTO rol("name", "description", "updatedAt", "createdAt")
 VALUES ('Alumno', 'Consultar notas y pagos', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
 
 
-INSERT INTO users("name", "password", "lastLogin", "updatedAt", "createdAt")
-VALUES ('Luis Alva', '1234', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO users("name", "email", "password", "lastLogin", "updatedAt", "createdAt")
+VALUES ('Luis Alva', 'luis.alva@gmail.com', '1234', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
 
-INSERT INTO users("name", "password", "lastLogin", "updatedAt", "createdAt")
-VALUES ('Eduardo Baldovino', '2345', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z',
+INSERT INTO users("name", "email", "password", "lastLogin", "updatedAt", "createdAt")
+VALUES ('Eduardo Baldovino', 'eduardo.baldovino@gmail.com', '2345', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z',
         '2022-10-01T21:42:28.444Z');
 
-INSERT INTO users("name", "password", "lastLogin", "updatedAt", "createdAt")
-VALUES ('Hans', '7896', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO users("name", "email", "password", "lastLogin", "updatedAt", "createdAt")
+VALUES ('Hans', 'hans@gmail.com', '7896', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
 
-INSERT INTO users("name", "password", "lastLogin", "updatedAt", "createdAt")
-VALUES ('jolaya', '1111', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO users("name", "email", "password", "lastLogin", "updatedAt", "createdAt")
+VALUES ('jolaya', 'jolaya@gmail.com', '1111', '2022-10-02T21:42:28.444Z', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
 
 
 INSERT INTO rol_user("updatedAt", "createdAt", "idRol", "idUser")
