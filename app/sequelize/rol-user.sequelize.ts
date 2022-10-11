@@ -1,6 +1,8 @@
-import { DataTypes, Model } from 'sequelize';
+import { DataTypes, Deferrable, Model } from 'sequelize';
 import { RolUser } from '../interfaces/rol-user.interface';
 import Server from '../server/server';
+import { RolSequelize } from './rol.sequelize';
+import { UserSequelize } from './user.sequelize';
 
 const sequelize = Server.sequelize;
 
@@ -21,6 +23,20 @@ RolUserSequelize.init(
       primaryKey: true,
       autoIncrement: true
     },
+    // idRol: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: RolSequelize,
+    //     key: 'id',
+    //   }
+    // },
+    // idUser: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: UserSequelize,
+    //     key: 'id',
+    //   }
+    // },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false
@@ -35,3 +51,6 @@ RolUserSequelize.init(
     sequelize
   }
 );
+
+// UserSequelize.belongsToMany(RolSequelize, { through: RolUserSequelize });
+// RolSequelize.belongsToMany(UserSequelize, { through: RolUserSequelize });
