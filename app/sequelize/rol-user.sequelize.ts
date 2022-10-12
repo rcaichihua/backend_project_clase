@@ -23,20 +23,6 @@ RolUserSequelize.init(
       primaryKey: true,
       autoIncrement: true
     },
-    // idRol: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: RolSequelize,
-    //     key: 'id',
-    //   }
-    // },
-    // idUser: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: UserSequelize,
-    //     key: 'id',
-    //   }
-    // },
     updatedAt: {
       type: DataTypes.DATE,
       allowNull: false
@@ -51,6 +37,3 @@ RolUserSequelize.init(
     sequelize
   }
 );
-
-// UserSequelize.belongsToMany(RolSequelize, { through: RolUserSequelize });
-// RolSequelize.belongsToMany(UserSequelize, { through: RolUserSequelize });

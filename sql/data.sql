@@ -48,14 +48,14 @@ INSERT INTO area("name", "updatedAt", "createdAt")
 VALUES ('Ciencia y tecnologia', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
 
 
-INSERT INTO criterion("name", "updatedAt", "createdAt")
-VALUES ('Algebra', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO criterion("name", "updatedAt", "createdAt", "idArea")
+VALUES ('Algebra', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z', 1);
 
-INSERT INTO criterion("name", "updatedAt", "createdAt")
-VALUES ('Geometria', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO criterion("name", "updatedAt", "createdAt", "idArea")
+VALUES ('Geometria', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z', 1);
 
-INSERT INTO criterion("name", "updatedAt", "createdAt")
-VALUES ('Trigonometria', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
+INSERT INTO criterion("name", "updatedAt", "createdAt", "idArea")
+VALUES ('Trigonometria', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z', 1);
 
 INSERT INTO criterion("name", "updatedAt", "createdAt")
 VALUES ('Comprension Lectora', '2022-10-01T21:42:28.444Z', '2022-10-01T21:42:28.444Z');
@@ -114,17 +114,8 @@ VALUES ('76793048', 'Baldovino Montes', 'Eduardo Raul Jesus', '8/12/1995', true,
         '2022-10-02T21:53:39.998Z', 1, 2, 2, 2);
 
 
-INSERT INTO shift("name", "updatedAt", "createdAt")
-VALUES ('Mañana', '2022-10-02T21:53:39.998Z', '2022-10-02T21:53:39.998Z');
-
-
-INSERT INTO course("year", "status", "updatedAt", "createdAt", "idEmployee", "idCriterion", "idArea", "idGrade",
-                   "idShift")
-VALUES (2022, true, '2022-10-02T21:53:39.998Z', '2022-10-02T21:53:39.998Z', 1, 1, 1, 2, 1);
-
-
-INSERT INTO area_employee("updatedAt", "createdAt", "idEmployee", "idArea")
-VALUES ('2022-10-02T21:53:39.998Z', '2022-10-02T21:53:39.998Z', 1, 1);
+INSERT INTO course("year", "status", "shift", "updatedAt", "createdAt", "idEmployee", "idCriterion", "idGrade")
+VALUES (2022, true, 'Tarde', '2022-10-02T21:53:39.998Z', '2022-10-02T21:53:39.998Z', 1, 1, 1);
 
 
 INSERT INTO student_course("updatedAt", "createdAt", "idCourse", "idStudent")

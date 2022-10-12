@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import { Area } from '../interfaces/area.interface';
 import Server from '../server/server';
-import { AreaEmployeeSequelize } from './area-employee.sequelize';
 import { CourseSequelize } from './course.sequelize';
+import { CriterionSequelize } from './criterion.sequelize';
 
 const sequelize = Server.sequelize;
 
@@ -41,14 +41,8 @@ AreaSequelize.init(
   }
 );
 
-AreaSequelize.hasMany(AreaEmployeeSequelize, {
+AreaSequelize.hasMany(CriterionSequelize, {
   sourceKey: 'id',
   foreignKey: 'idArea',
-  as: 'area-employees'
-});
-
-AreaSequelize.hasMany(CourseSequelize, {
-  sourceKey: 'id',
-  foreignKey: 'idArea',
-  as: 'courses'
+  as: 'criteria'
 });
