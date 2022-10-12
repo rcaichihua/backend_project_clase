@@ -94,23 +94,13 @@ CREATE TABLE criterion
     id        SERIAL PRIMARY KEY,
     name      VARCHAR(25),
     updatedAt TIMESTAMP NOT NULL,
-    createdAt TIMESTAMP NOT NULL
+    createdAt TIMESTAMP NOT NULL,
+    idArea INTEGER REFERENCES area(id) ON UPDATE CASCADE
 );
 
 ALTER TABLE criterion RENAME COLUMN updatedat TO "updatedAt";
 ALTER TABLE criterion RENAME COLUMN createdat TO "createdAt";
-
-CREATE TABLE shift
-(
-    id        SERIAL PRIMARY KEY,
-    name      VARCHAR(45),
-    updatedAt TIMESTAMP NOT NULL,
-    createdAt TIMESTAMP NOT NULL
-);
-
-ALTER TABLE shift RENAME COLUMN updatedat TO "updatedAt";
-ALTER TABLE shift RENAME COLUMN createdat TO "createdAt";
-
+ALTER TABLE criterion RENAME COLUMN idarea TO "idArea";
 
 CREATE TABLE employee
 (
@@ -136,14 +126,13 @@ CREATE TABLE course
 (
     id          SERIAL PRIMARY KEY,
     year        INTEGER   NOT NULL,
+    shift       VARCHAR(50) NOT NULL,
     status      BOOLEAN DEFAULT TRUE,
     updatedAt   TIMESTAMP NOT NULL,
     createdAt   TIMESTAMP NOT NULL,
     idEmployee  INTEGER REFERENCES employee (id) ON UPDATE CASCADE,
     idCriterion INTEGER REFERENCES criterion (id) ON UPDATE CASCADE,
-    idArea      INTEGER REFERENCES area (id) ON UPDATE CASCADE,
-    idGrade     INTEGER REFERENCES grade (id) ON UPDATE CASCADE,
-    idShift     INTEGER REFERENCES shift (id) ON UPDATE CASCADE
+    idGrade     INTEGER REFERENCES grade (id) ON UPDATE CASCADE
 );
 
 ALTER TABLE course RENAME COLUMN updatedat TO "updatedAt";
@@ -234,20 +223,6 @@ ALTER TABLE student_course RENAME COLUMN updatedat TO "updatedAt";
 ALTER TABLE student_course RENAME COLUMN createdat TO "createdAt";
 ALTER TABLE student_course RENAME COLUMN idCourse TO "idCourse";
 ALTER TABLE student_course RENAME COLUMN idStudent TO "idStudent";
-
-CREATE TABLE area_employee
-(
-    id         SERIAL    NOT NULL,
-    updatedAt  TIMESTAMP NOT NULL,
-    createdAt  TIMESTAMP NOT NULL,
-    idEmployee INTEGER REFERENCES employee (id) ON UPDATE CASCADE,
-    idArea     INTEGER REFERENCES area (id) ON UPDATE CASCADE
-);
-
-ALTER TABLE area_employee RENAME COLUMN updatedat TO "updatedAt";
-ALTER TABLE area_employee RENAME COLUMN createdat TO "createdAt";
-ALTER TABLE area_employee RENAME COLUMN idEmployee TO "idEmployee";
-ALTER TABLE area_employee RENAME COLUMN idArea TO "idArea";
 
 CREATE TABLE attendance
 (
