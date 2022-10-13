@@ -41,6 +41,7 @@ AttendanceSequelize.init(
     }
   },
   {
+    modelName: 'attendance',
     tableName: 'attendance',
     sequelize
   }

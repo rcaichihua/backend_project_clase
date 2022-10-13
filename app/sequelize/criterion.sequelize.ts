@@ -35,6 +35,7 @@ CriterionSequelize.init(
     }
   },
   {
+    modelName: 'criterion',
     tableName: 'criterion',
     sequelize
   }
@@ -44,4 +45,9 @@ CriterionSequelize.hasMany(CourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idCriterion',
   as: 'courses'
+});
+
+CourseSequelize.belongsTo(CriterionSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idCriterion'
 });

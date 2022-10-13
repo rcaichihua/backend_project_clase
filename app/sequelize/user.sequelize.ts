@@ -47,6 +47,7 @@ UserSequelize.init(
     }
   },
   {
+    modelName: 'users',
     tableName: 'users',
     sequelize
   }
@@ -58,14 +59,29 @@ UserSequelize.hasOne(EmployeeSequelize, {
   as: 'employee'
 });
 
+EmployeeSequelize.belongsTo(UserSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idUser'
+});
+
 UserSequelize.hasMany(RolUserSequelize, {
   sourceKey: 'id',
   foreignKey: 'idUser',
   as: 'rol-users'
 });
 
+RolUserSequelize.belongsTo(UserSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idUser'
+});
+
 UserSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idUser',
   as: 'students'
+});
+
+StudentSequelize.belongsTo(UserSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idUser'
 });

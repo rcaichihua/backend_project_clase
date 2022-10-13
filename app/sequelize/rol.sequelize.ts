@@ -40,6 +40,7 @@ RolSequelize.init(
     }
   },
   {
+    modelName: 'rol',
     tableName: 'rol',
     sequelize
   }
@@ -49,4 +50,9 @@ RolSequelize.hasMany(RolUserSequelize, {
   sourceKey: 'id',
   foreignKey: 'idRol',
   as: 'rol-users'
+});
+
+RolUserSequelize.belongsTo(RolSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idRol'
 });

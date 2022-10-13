@@ -1,8 +1,6 @@
-import { DataTypes, Deferrable, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import { RolUser } from '../interfaces/rol-user.interface';
 import Server from '../server/server';
-import { RolSequelize } from './rol.sequelize';
-import { UserSequelize } from './user.sequelize';
 
 const sequelize = Server.sequelize;
 
@@ -33,6 +31,7 @@ RolUserSequelize.init(
     }
   },
   {
+    modelName: 'rol_user',
     tableName: 'rol_user',
     sequelize
   }

@@ -36,6 +36,7 @@ GenderSequelize.init(
     }
   },
   {
+    modelName: 'gender',
     tableName: 'gender',
     sequelize
   }
@@ -47,8 +48,18 @@ GenderSequelize.hasMany(GuardianSequelize, {
   as: 'guardians'
 });
 
+GuardianSequelize.belongsTo(GenderSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idGender'
+});
+
 GenderSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGender',
   as: 'students'
+});
+
+StudentSequelize.belongsTo(GenderSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idGender'
 });

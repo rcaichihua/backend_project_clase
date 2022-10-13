@@ -51,6 +51,7 @@ ScoreSequelize.init(
     }
   },
   {
+    modelName: 'score',
     tableName: 'score',
     sequelize
   }

@@ -57,6 +57,7 @@ GuardianSequelize.init(
     }
   },
   {
+    modelName: 'guardian',
     tableName: 'guardian',
     sequelize
   }
@@ -66,4 +67,9 @@ GuardianSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGuardian',
   as: 'students'
+});
+
+StudentSequelize.belongsTo(GuardianSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idGuardian'
 });

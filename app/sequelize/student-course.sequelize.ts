@@ -31,6 +31,7 @@ StudentCourseSequelize.init(
     }
   },
   {
+    modelName: 'student_course',
     tableName: 'student_course',
     sequelize
   }

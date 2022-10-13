@@ -1,7 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { Area } from '../interfaces/area.interface';
 import Server from '../server/server';
-import { CourseSequelize } from './course.sequelize';
 import { CriterionSequelize } from './criterion.sequelize';
 
 const sequelize = Server.sequelize;
@@ -36,6 +35,7 @@ AreaSequelize.init(
     }
   },
   {
+    modelName: 'area',
     tableName: 'area',
     sequelize
   }
@@ -45,4 +45,9 @@ AreaSequelize.hasMany(CriterionSequelize, {
   sourceKey: 'id',
   foreignKey: 'idArea',
   as: 'criteria'
+});
+
+CriterionSequelize.belongsTo(AreaSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idArea'
 });

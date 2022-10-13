@@ -41,6 +41,7 @@ GradeSequelize.init(
     }
   },
   {
+    modelName: 'grade',
     tableName: 'grade',
     sequelize
   }
@@ -52,8 +53,18 @@ GradeSequelize.hasMany(CourseSequelize, {
   as: 'courses'
 });
 
+CourseSequelize.belongsTo(GradeSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idGrade'
+});
+
 GradeSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGrade',
   as: 'students'
+});
+
+StudentSequelize.belongsTo(GradeSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idGrade'
 });

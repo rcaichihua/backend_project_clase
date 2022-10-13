@@ -63,6 +63,7 @@ StudentSequelize.init(
     }
   },
   {
+    modelName: 'student',
     tableName: 'student',
     sequelize
   }
@@ -74,10 +75,20 @@ StudentSequelize.hasMany(PaymentSequelize, {
   as: 'students'
 });
 
+PaymentSequelize.belongsTo(StudentSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idStudent'
+});
+
 StudentSequelize.hasMany(StudentCourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
   as: 'student-courses'
+});
+
+StudentCourseSequelize.belongsTo(StudentSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idStudent'
 });
 
 StudentSequelize.hasMany(ScoreSequelize, {
@@ -86,9 +97,19 @@ StudentSequelize.hasMany(ScoreSequelize, {
   as: 'scores'
 });
 
+ScoreSequelize.belongsTo(StudentSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idStudent'
+});
+
 
 StudentSequelize.hasMany(AttendanceSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
   as: 'attendances'
+});
+
+AttendanceSequelize.belongsTo(StudentSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idStudent'
 });

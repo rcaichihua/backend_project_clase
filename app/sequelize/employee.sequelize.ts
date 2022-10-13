@@ -67,6 +67,7 @@ EmployeeSequelize.init(
     }
   },
   {
+    modelName: 'employee',
     tableName: 'employee',
     sequelize
   }
@@ -76,4 +77,9 @@ EmployeeSequelize.hasMany(CourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idEmployee',
   as: 'courses'
+});
+
+CourseSequelize.belongsTo(EmployeeSequelize, {
+  targetKey: 'id',
+  foreignKey: 'idEmployee'
 });

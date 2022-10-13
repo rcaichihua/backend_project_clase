@@ -85,6 +85,7 @@ PaymentSequelize.init(
     }
   },
   {
+    modelName: 'payment',
     tableName: 'payment',
     sequelize
   }
