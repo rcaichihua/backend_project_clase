@@ -8,7 +8,7 @@ export const listRol = async (req: Request, res: Response) => {
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -23,12 +23,12 @@ export const getRol = async (req: Request, res: Response) => {
     }
 
     return res.status(400).json({
-      message: `El rol no existe`
+      message: `El rol no existe`,
     });
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -42,19 +42,18 @@ export const updateRol = async (req: Request, res: Response) => {
     const rol = await RolSequelize.findByPk(id);
 
     if (rol && (name || description)) {
-      const updatedRol = await rol.update({name, description});
+      const updatedRol = await rol.update({ name, description });
 
       return res.json(updatedRol);
     }
 
     return res.status(400).json({
-      message: 'No se encontro datos que actualizar'
+      message: 'No se encontro datos que actualizar',
     });
-
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };

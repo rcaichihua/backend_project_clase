@@ -29,64 +29,64 @@ PaymentSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     march: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     april: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     may: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     june: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     july: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     august: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     september: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     october: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     november: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     december: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'payment',
     tableName: 'payment',
-    sequelize
+    sequelize,
   }
 );

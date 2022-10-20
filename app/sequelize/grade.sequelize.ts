@@ -2,7 +2,6 @@ import { DataTypes, Model } from 'sequelize';
 import { Grade } from '../interfaces/grade.interface';
 import Server from '../server/server';
 import { CourseSequelize } from './course.sequelize';
-import { StudentSequelize } from './student.sequelize';
 
 const sequelize = Server.sequelize;
 
@@ -21,50 +20,39 @@ GradeSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     grade: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     level: {
       type: DataTypes.STRING(20),
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'grade',
     tableName: 'grade',
-    sequelize
+    sequelize,
   }
 );
 
 GradeSequelize.hasMany(CourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGrade',
-  as: 'courses'
+  as: 'courses',
 });
 
 CourseSequelize.belongsTo(GradeSequelize, {
   targetKey: 'id',
-  foreignKey: 'idGrade'
-});
-
-GradeSequelize.hasMany(StudentSequelize, {
-  sourceKey: 'id',
   foreignKey: 'idGrade',
-  as: 'students'
-});
-
-StudentSequelize.belongsTo(GradeSequelize, {
-  targetKey: 'id',
-  foreignKey: 'idGrade'
 });

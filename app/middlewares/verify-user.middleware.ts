@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { AppRequest } from '../interfaces/app-request.interface';
 import { UserSequelize } from '../sequelize/user.sequelize';
 
@@ -19,13 +19,12 @@ export const VerifyUserMiddleware = async (
 
     if (user) {
       req.user = user;
-      return next()
+      return next();
     } else {
       return res.status(400).json({
         message: `El usuario no existe`,
       });
     }
-
   } catch (exception) {
     res.status(500).json({ message: 'Error en la base de datos', exception });
   }

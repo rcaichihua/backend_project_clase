@@ -23,65 +23,65 @@ UserSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(30),
-      allowNull: false
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING(250),
-      allowNull: false
+      allowNull: false,
     },
     lastLogin: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'users',
     tableName: 'users',
-    sequelize
+    sequelize,
   }
-)
+);
 
 UserSequelize.hasOne(EmployeeSequelize, {
   sourceKey: 'id',
   foreignKey: 'idUser',
-  as: 'employee'
+  as: 'employee',
 });
 
 EmployeeSequelize.belongsTo(UserSequelize, {
   targetKey: 'id',
-  foreignKey: 'idUser'
+  foreignKey: 'idUser',
 });
 
 UserSequelize.hasMany(RolUserSequelize, {
   sourceKey: 'id',
   foreignKey: 'idUser',
-  as: 'rol-users'
+  as: 'rol-users',
 });
 
 RolUserSequelize.belongsTo(UserSequelize, {
   targetKey: 'id',
-  foreignKey: 'idUser'
+  foreignKey: 'idUser',
 });
 
 UserSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idUser',
-  as: 'students'
+  as: 'students',
 });
 
 StudentSequelize.belongsTo(UserSequelize, {
   targetKey: 'id',
-  foreignKey: 'idUser'
+  foreignKey: 'idUser',
 });

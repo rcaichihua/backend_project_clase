@@ -20,39 +20,39 @@ RolSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'rol',
     tableName: 'rol',
-    sequelize
+    sequelize,
   }
 );
 
 RolSequelize.hasMany(RolUserSequelize, {
   sourceKey: 'id',
   foreignKey: 'idRol',
-  as: 'rol-users'
+  as: 'rol-users',
 });
 
 RolUserSequelize.belongsTo(RolSequelize, {
   targetKey: 'id',
-  foreignKey: 'idRol'
+  foreignKey: 'idRol',
 });

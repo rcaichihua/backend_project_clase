@@ -19,7 +19,6 @@ export class StudentSequelize extends Model implements Student {
   readonly createdAt!: Date;
   idGender!: number;
   idGuardian!: number;
-  idGrade!: number;
   idUser!: number;
 }
 
@@ -30,86 +29,85 @@ StudentSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     dni: {
       type: DataTypes.STRING(15),
       unique: true,
-      allowNull: false
+      allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING(150),
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING(70),
-      allowNull: false
+      allowNull: false,
     },
     birthday: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: true,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'student',
     tableName: 'student',
-    sequelize
+    sequelize,
   }
 );
 
 StudentSequelize.hasMany(PaymentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
-  as: 'students'
+  as: 'students',
 });
 
 PaymentSequelize.belongsTo(StudentSequelize, {
   targetKey: 'id',
-  foreignKey: 'idStudent'
+  foreignKey: 'idStudent',
 });
 
 StudentSequelize.hasMany(StudentCourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
-  as: 'student-courses'
+  as: 'student-courses',
 });
 
 StudentCourseSequelize.belongsTo(StudentSequelize, {
   targetKey: 'id',
-  foreignKey: 'idStudent'
+  foreignKey: 'idStudent',
 });
 
 StudentSequelize.hasMany(ScoreSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
-  as: 'scores'
+  as: 'scores',
 });
 
 ScoreSequelize.belongsTo(StudentSequelize, {
   targetKey: 'id',
-  foreignKey: 'idStudent'
+  foreignKey: 'idStudent',
 });
-
 
 StudentSequelize.hasMany(AttendanceSequelize, {
   sourceKey: 'id',
   foreignKey: 'idStudent',
-  as: 'attendances'
+  as: 'attendances',
 });
 
 AttendanceSequelize.belongsTo(StudentSequelize, {
   targetKey: 'id',
-  foreignKey: 'idStudent'
+  foreignKey: 'idStudent',
 });

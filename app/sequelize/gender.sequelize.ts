@@ -20,46 +20,46 @@ GenderSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(25),
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'gender',
     tableName: 'gender',
-    sequelize
+    sequelize,
   }
 );
 
 GenderSequelize.hasMany(GuardianSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGender',
-  as: 'guardians'
+  as: 'guardians',
 });
 
 GuardianSequelize.belongsTo(GenderSequelize, {
   targetKey: 'id',
-  foreignKey: 'idGender'
+  foreignKey: 'idGender',
 });
 
 GenderSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGender',
-  as: 'students'
+  as: 'students',
 });
 
 StudentSequelize.belongsTo(GenderSequelize, {
   targetKey: 'id',
-  foreignKey: 'idGender'
+  foreignKey: 'idGender',
 });

@@ -19,35 +19,35 @@ CriterionSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(25),
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'criterion',
     tableName: 'criterion',
-    sequelize
+    sequelize,
   }
 );
 
 CriterionSequelize.hasMany(CourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idCriterion',
-  as: 'courses'
+  as: 'courses',
 });
 
 CourseSequelize.belongsTo(CriterionSequelize, {
   targetKey: 'id',
-  foreignKey: 'idCriterion'
+  foreignKey: 'idCriterion',
 });

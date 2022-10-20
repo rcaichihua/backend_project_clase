@@ -5,10 +5,9 @@ export const listUser = async (req: Request, res: Response) => {
   try {
     const users = await UserSequelize.findAll();
     return res.json(users);
-  }
-  catch (e) {
+  } catch (e) {
     return res.status(404).json({
-      message: 'Error'
-    })
+      message: 'Error',
+    });
   }
-}
+};

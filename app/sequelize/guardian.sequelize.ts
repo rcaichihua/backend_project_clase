@@ -24,52 +24,52 @@ GuardianSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     dni: {
       type: DataTypes.STRING(20),
       unique: true,
-      allowNull: false
+      allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING(150),
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING(70),
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
     },
     phone: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'guardian',
     tableName: 'guardian',
-    sequelize
+    sequelize,
   }
 );
 
 GuardianSequelize.hasMany(StudentSequelize, {
   sourceKey: 'id',
   foreignKey: 'idGuardian',
-  as: 'students'
+  as: 'students',
 });
 
 StudentSequelize.belongsTo(GuardianSequelize, {
   targetKey: 'id',
-  foreignKey: 'idGuardian'
+  foreignKey: 'idGuardian',
 });

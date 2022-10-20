@@ -26,60 +26,60 @@ EmployeeSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     dni: {
       type: DataTypes.STRING(15),
       unique: true,
-      allowNull: false
+      allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING(150),
-      allowNull: false
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING(70),
-      allowNull: false
+      allowNull: false,
     },
     birthday: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING(11),
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: true,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'employee',
     tableName: 'employee',
-    sequelize
+    sequelize,
   }
 );
 
 EmployeeSequelize.hasMany(CourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idEmployee',
-  as: 'courses'
+  as: 'courses',
 });
 
 CourseSequelize.belongsTo(EmployeeSequelize, {
   targetKey: 'id',
-  foreignKey: 'idEmployee'
+  foreignKey: 'idEmployee',
 });

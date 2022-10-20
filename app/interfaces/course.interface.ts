@@ -6,7 +6,5 @@ export interface Course {
   createdAt: Date;
   idEmployee: number;
   idCriterion: number;
-  idArea: number;
   idGrade: number;
-  idShift: number;
 }

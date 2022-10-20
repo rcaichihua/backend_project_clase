@@ -21,28 +21,28 @@ AttendanceSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     day: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'attendance',
     tableName: 'attendance',
-    sequelize
+    sequelize,
   }
 );

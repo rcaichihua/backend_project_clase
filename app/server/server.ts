@@ -42,9 +42,9 @@ export default class Server {
   }
 
   public configRouter(routes: Route[]) {
-    routes.forEach(route => {
+    routes.forEach((route) => {
       this.app.use(route.path, route.router);
-    })
+    });
   }
 
   start(callback: () => void): void {

@@ -19,35 +19,35 @@ AreaSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(25),
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'area',
     tableName: 'area',
-    sequelize
+    sequelize,
   }
 );
 
 AreaSequelize.hasMany(CriterionSequelize, {
   sourceKey: 'id',
   foreignKey: 'idArea',
-  as: 'criteria'
+  as: 'criteria',
 });
 
 CriterionSequelize.belongsTo(AreaSequelize, {
   targetKey: 'id',
-  foreignKey: 'idArea'
+  foreignKey: 'idArea',
 });

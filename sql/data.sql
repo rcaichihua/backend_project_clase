@@ -108,10 +108,9 @@ VALUES ('78945612', 'Olaya Regortas', 'Jose', '1/8/1999', 'jolaya@gmail.com', '9
         '2022-10-02T21:53:39.998Z', '2022-10-02T21:53:39.998Z', 4);
 
 
-INSERT INTO student("dni", "lastName", "name", "birthday", "status", "updatedAt", "createdAt", "idGender", "idGuardian",
-                    "idGrade", "idUser")
+INSERT INTO student("dni", "lastName", "name", "birthday", "status", "updatedAt", "createdAt", "idGender", "idGuardian", "idUser")
 VALUES ('76793048', 'Baldovino Montes', 'Eduardo Raul Jesus', '8/12/1995', true, '2022-10-02T21:53:39.998Z',
-        '2022-10-02T21:53:39.998Z', 1, 2, 2, 2);
+        '2022-10-02T21:53:39.998Z', 1, 2, 2);
 
 
 INSERT INTO course("year", "status", "shift", "updatedAt", "createdAt", "idEmployee", "idCriterion", "idGrade")

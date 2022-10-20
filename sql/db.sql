@@ -66,7 +66,6 @@ CREATE TABLE student
     createdAt  TIMESTAMP          NOT NULL,
     idGender   INTEGER REFERENCES gender (id) ON UPDATE CASCADE,
     idGuardian INTEGER REFERENCES guardian (id) ON UPDATE CASCADE,
-    idGrade    INTEGER REFERENCES grade (id) ON UPDATE CASCADE,
     idUser     INTEGER REFERENCES users (id) ON UPDATE CASCADE
 );
 
@@ -75,7 +74,6 @@ ALTER TABLE student RENAME COLUMN updatedat TO "updatedAt";
 ALTER TABLE student RENAME COLUMN createdat TO "createdAt";
 ALTER TABLE student RENAME COLUMN idGender TO "idGender";
 ALTER TABLE student RENAME COLUMN idGuardian TO "idGuardian";
-ALTER TABLE student RENAME COLUMN idGrade TO "idGrade";
 ALTER TABLE student RENAME COLUMN idUser TO "idUser";
 
 CREATE TABLE area
@@ -139,9 +137,7 @@ ALTER TABLE course RENAME COLUMN updatedat TO "updatedAt";
 ALTER TABLE course RENAME COLUMN createdat TO "createdAt";
 ALTER TABLE course RENAME COLUMN idEmployee TO "idEmployee";
 ALTER TABLE course RENAME COLUMN idCriterion TO "idCriterion";
-ALTER TABLE course RENAME COLUMN idArea TO "idArea";
 ALTER TABLE course RENAME COLUMN idGrade TO "idGrade";
-ALTER TABLE course RENAME COLUMN idShift TO "idShift";
 
 CREATE TABLE score
 (

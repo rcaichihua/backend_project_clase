@@ -15,9 +15,7 @@ export class CourseSequelize extends Model implements Course {
   readonly createdAt!: Date;
   idEmployee!: number;
   idCriterion!: number;
-  idArea!: number;
   idGrade!: number;
-  idShift!: number;
 }
 
 CourseSequelize.init(
@@ -27,61 +25,61 @@ CourseSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
+      defaultValue: true,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'course',
     tableName: 'course',
-    sequelize
+    sequelize,
   }
 );
 
 CourseSequelize.hasMany(StudentCourseSequelize, {
   sourceKey: 'id',
   foreignKey: 'idCourse',
-  as: 'student-courses'
+  as: 'student-courses',
 });
 
 StudentCourseSequelize.belongsTo(CourseSequelize, {
   targetKey: 'id',
-  foreignKey: 'idCourse'
+  foreignKey: 'idCourse',
 });
 
 CourseSequelize.hasMany(ScoreSequelize, {
   sourceKey: 'id',
   foreignKey: 'idCourse',
-  as: 'scores'
+  as: 'scores',
 });
 
 ScoreSequelize.belongsTo(CourseSequelize, {
   targetKey: 'id',
-  foreignKey: 'idCourse'
+  foreignKey: 'idCourse',
 });
 
 CourseSequelize.hasMany(AttendanceSequelize, {
   sourceKey: 'id',
   foreignKey: 'idCourse',
-  as: 'attendances'
+  as: 'attendances',
 });
 
 AttendanceSequelize.belongsTo(CourseSequelize, {
   targetKey: 'id',
-  foreignKey: 'idCourse'
+  foreignKey: 'idCourse',
 });

@@ -23,36 +23,36 @@ ScoreSequelize.init(
       allowNull: false,
       unique: true,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     first: {
       type: DataTypes.DECIMAL,
-      defaultValue: 0
+      defaultValue: 0,
     },
     second: {
       type: DataTypes.DECIMAL,
-      defaultValue: 0
+      defaultValue: 0,
     },
     average: {
       type: DataTypes.DECIMAL,
-      defaultValue: 0
+      defaultValue: 0,
     },
     bimester: {
       type: DataTypes.NUMBER,
-      allowNull: false
+      allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     modelName: 'score',
     tableName: 'score',
-    sequelize
+    sequelize,
   }
 );

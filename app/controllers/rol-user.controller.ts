@@ -7,18 +7,18 @@ export const listRolUser = async (req: AppRequest, res: Response) => {
   try {
     const roles = await RolUserSequelize.findAll({
       attributes: {
-        exclude: ['idRol', 'createdAt', 'updatedAt']
+        exclude: ['idRol', 'createdAt', 'updatedAt'],
       },
       where: {
-        idUser: req.user?.id
+        idUser: req.user?.id,
       },
-      include: RolSequelize
+      include: RolSequelize,
     });
     return res.json(roles);
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };

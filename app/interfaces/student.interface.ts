@@ -9,6 +9,5 @@ export interface Student {
   createdAt: Date;
   idGender: number;
   idGuardian: number;
-  idGrade: number;
   idUser: number;
 }

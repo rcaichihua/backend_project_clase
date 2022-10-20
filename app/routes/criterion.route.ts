@@ -4,13 +4,13 @@ import {
   deleteCriterion,
   getCriterion,
   listCriterion,
-  updateCriterion
+  updateCriterion,
 } from '../controllers/criterion.controller';
 
 export const criterionRoute = Router();
 
 criterionRoute.get('/', listCriterion);
-criterionRoute.get('/:id', getCriterion)
-criterionRoute.put('/:id', updateCriterion)
+criterionRoute.get('/:id', getCriterion);
+criterionRoute.put('/:id', updateCriterion);
 criterionRoute.post('/', createCriterion);
 criterionRoute.delete('/:id', deleteCriterion);

@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { CriterionSequelize } from '../sequelize/criterion.sequelize';
 import { GradeSequelize } from '../sequelize/grade.sequelize';
 
 export const listGrade = async (req: Request, res: Response) => {
@@ -9,7 +8,7 @@ export const listGrade = async (req: Request, res: Response) => {
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -24,12 +23,12 @@ export const getGrade = async (req: Request, res: Response) => {
     }
 
     return res.status(400).json({
-      message: `El grado no existe`
+      message: `El grado no existe`,
     });
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -40,18 +39,18 @@ export const createGrade = async (req: Request, res: Response) => {
     const level = req.body.level;
 
     if (grade && level) {
-      const newGrade = await GradeSequelize.create({grade, level});
+      const newGrade = await GradeSequelize.create({ grade, level });
 
       return res.status(202).json(newGrade);
     }
 
     return res.status(400).json({
-      message: 'Es necesario registrar el grado y nivel'
+      message: 'Es necesario registrar el grado y nivel',
     });
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -65,18 +64,17 @@ export const updateGrade = async (req: Request, res: Response) => {
     const updateGrade = await GradeSequelize.findByPk(id);
 
     if (updateGrade && (grade || level)) {
-      const updatedGrade = await updateGrade.update({grade, level});
+      const updatedGrade = await updateGrade.update({ grade, level });
       return res.json(updatedGrade);
     }
 
     return res.status(400).json({
-      message: 'No se encontro datos que actualizar'
+      message: 'No se encontro datos que actualizar',
     });
-
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
@@ -87,23 +85,23 @@ export const deleteGrade = async (req: Request, res: Response) => {
 
     const deleteGrade = await GradeSequelize.destroy({
       where: {
-        id: id
-      }
+        id: id,
+      },
     });
 
     if (deleteGrade) {
       return res.json({
-        message: 'Se elimino el grado correctamente'
+        message: 'Se elimino el grado correctamente',
       });
     }
 
     return res.status(400).json({
-      message: 'El grado que intenta eliminar no existe '
+      message: 'El grado que intenta eliminar no existe ',
     });
   } catch (e) {
     return res.status(404).json({
       message: 'Error',
-      detail: e
+      detail: e,
     });
   }
 };
