@@ -24,7 +24,7 @@ app.use(cors({ origin: true, credentials: true }));
  * Routes
  */
 app.use('/api/auth', AuthRouter);
-app.use('/api/users', UserRouter);
+app.use('/api/users', AuthMiddleware, UserRouter);
 app.use('/api/permissions', AuthMiddleware, PermissionRouter);
 app.use('/api/rols', AuthMiddleware, RolRouter);
 

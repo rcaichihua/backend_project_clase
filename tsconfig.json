@@ -9,6 +9,7 @@
     "strict": true,
     "skipLibCheck": true,
     "rootDirs": ["src", "prisma"],
-    "typeRoots": ["./node_module/@types", "./@types"]
+    "typeRoots": ["./node_module/@types", "./@types"],
+    "outDir": "dist"
   }
 }
