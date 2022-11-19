@@ -11,18 +11,24 @@ export const AuthMiddleware = async (
 ) => {
   const authorization = req.headers.authorization;
   if (!authorization) {
-    throw new AppError(403, 'Autorización requerida');
+    throw new AppError(401, 'Autorización requerida');
   }
 
   const token = authorization.split('Bearer ')[1];
-  const decodedToken = tokenService.verify(token);
+  let decodedToken;
+
+  try {
+    decodedToken = tokenService.verify(token);
+  } catch (e: any) {
+    throw new AppError(401, e.message);
+  }
 
   if (!decodedToken) {
-    throw new AppError(403, 'Token invalido');
+    throw new AppError(401, 'Token invalido');
   }
 
   if (!tokenService.isAccessToken(decodedToken)) {
-    throw new AppError(403, 'Tipo de token invalido');
+    throw new AppError(401, 'Tipo de token invalido');
   }
 
   req.userId = decodedToken.userId;

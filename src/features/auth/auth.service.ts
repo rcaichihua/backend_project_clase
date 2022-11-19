@@ -43,6 +43,8 @@ export class AuthService {
 
     const access = this.tokenService.getAccessToken({
       userId: user.id,
+      fullname: `${user.firstName} ${user.lastName}`,
+      isSuperuser: user.isSuperuser,
       permissions: [...permissions],
     });
     const refresh = this.tokenService.getRefreshToken({ userId: user.id });

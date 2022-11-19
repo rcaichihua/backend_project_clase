@@ -20,6 +20,7 @@ model User {
   isSuperuser    Boolean
   userPermission UserPermission[]
   userRol        UserRol[]
+  Attendance     Attendance[]
 }
 
 model Rol {
@@ -31,7 +32,7 @@ model Rol {
 
 model Permission {
   id             Int              @id @default(autoincrement())
-  name       String           @unique
+  name           String           @unique
   rolPermission  RolPermission[]
   userPermission UserPermission[]
 }
@@ -61,4 +62,28 @@ model UserPermission {
   permissionId Int
 
   @@id([userId, permissionId])
+}
+
+model Classroom {
+  id         Int          @id @default(autoincrement())
+  grade      String
+  level      String
+  Attendance Attendance[]
+}
+
+model Subject {
+  id         Int          @id @default(autoincrement())
+  name       String
+  Attendance Attendance[]
+}
+
+model Attendance {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  classroom   Classroom @relation(fields: [classroomId], references: [id])
+  classroomId Int
+  subject     Subject   @relation(fields: [subjectId], references: [id])
+  subjectId   Int
+  teacher     User      @relation(fields: [teacherId], references: [id])
+  teacherId   Int
 }
