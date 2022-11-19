@@ -47,6 +47,14 @@ export class UserService {
     permissionIds: number[],
     rolIds: number[]
   ) {
+    const exist = await this.userRepository.getByEmailWithPermissions(
+      body.email
+    );
+
+    if (exist) {
+      throw new AppError(400, 'ERR_USR_0001');
+    }
+
     const data: Omit<User, 'id'> = {
       ...body,
       password: this.hashService.toHash(body.dni),

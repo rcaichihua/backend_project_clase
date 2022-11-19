@@ -87,6 +87,8 @@ export class AuthService {
 
     const access = this.tokenService.getAccessToken({
       userId: decodedToken.userId,
+      fullname: `${user.firstName} ${user.lastName}`,
+      isSuperuser: user.isSuperuser,
       permissions: [...permissions],
     });
 

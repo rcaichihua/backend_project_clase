@@ -27,7 +27,7 @@ const getUsers = (): Omit<User, 'id'>[] => {
 
 const getPermissions = (): Omit<Permission, 'id'>[] => {
   const crudItems: string[] = ['CREATE', 'READ', 'UPDATE', 'DELETE'];
-  const modules: string[] = ['USER'];
+  const modules: string[] = ['USER', 'ROL'];
   const permissionList: string[] = [];
 
   modules.forEach((module) => {
