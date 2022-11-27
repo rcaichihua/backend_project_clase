@@ -2,6 +2,10 @@
 
 ## Instrucciones para ejecutar
 
+## Nota
+
+Es requerido node js versión 14 en adelante
+
 ### 1. Instalar dependencias
 
 ```
