@@ -12,7 +12,9 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:drop": "rm prisma/dev.db",
-    "db:refresh": "npm run db:drop && npm run db:push && npm run db:seed"
+    "db:refresh": "npm run db:drop && npm run db:push && npm run db:seed",
+    "win:db:drop": "del /f prisma\\dev.db",
+    "win:db:refresh": "npm run win:db:drop && npm run db:push && npm run db:seed"
   },
   "author": "Luis Vilcarromero",
   "license": "ISC",
