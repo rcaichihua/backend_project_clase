@@ -9,6 +9,9 @@ import { PermissionRouter } from './features/permission/permission.router';
 import { RolRouter } from './features/rol/rol.router';
 import { AuthMiddleware } from './common/middleware/auth.middleware';
 import { ErrorHandlerMiddleware } from './common/middleware/error-handler.middleware';
+import { ClassroomRouter } from './features/classroom/classroom.router';
+import { SubjectRouter } from './features/subject/subject.router';
+import { ClassroomSubjectRouter } from './features/classroom-subject/classroom-subject.router';
 
 const app = express();
 const port = 3000;
@@ -27,6 +30,9 @@ app.use('/api/auth', AuthRouter);
 app.use('/api/users', AuthMiddleware, UserRouter);
 app.use('/api/permissions', AuthMiddleware, PermissionRouter);
 app.use('/api/rols', AuthMiddleware, RolRouter);
+app.use('/api/classrooms', AuthMiddleware, ClassroomRouter);
+app.use('/api/subjects', AuthMiddleware, SubjectRouter);
+app.use('/api/classrooms/subjects', AuthMiddleware, ClassroomSubjectRouter);
 
 /**
  * Error Handler

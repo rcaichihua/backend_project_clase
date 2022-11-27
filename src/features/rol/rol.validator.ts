@@ -2,11 +2,6 @@ import { Rol } from '@prisma/client';
 import { IsString, IsArray, ValidateNested, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class AAA {
-  @IsNumber()
-  id!: string;
-}
-
 export class RolValidator implements Omit<Rol, 'id'> {
   @IsString()
   name!: string;
