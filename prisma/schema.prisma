@@ -11,16 +11,17 @@ datasource db {
 }
 
 model User {
-  id             Int              @id @default(autoincrement())
-  dni            String           @unique
-  email          String           @unique
-  firstName      String
-  lastName       String
-  password       String
-  isSuperuser    Boolean
-  userPermission UserPermission[]
-  userRol        UserRol[]
-  Attendance     Attendance[]
+  id                      Int                       @id @default(autoincrement())
+  dni                     String                    @unique
+  email                   String                    @unique
+  firstName               String
+  lastName                String
+  password                String
+  isSuperuser             Boolean
+  userPermission          UserPermission[]
+  userRol                 UserRol[]
+  Attendance              Attendance[]
+  classroomSubjectTeacher ClassroomSubjectTeacher[]
 }
 
 model Rol {
@@ -64,29 +65,59 @@ model UserPermission {
   @@id([userId, permissionId])
 }
 
+model Student {
+  id                      Int                       @id @default(autoincrement())
+  dni                     String                    @unique
+  firstName               String
+  lastName                String
+  classroomSubjectStudent ClassroomSubjectStudent[]
+}
+
 model Classroom {
   id               Int                @id @default(autoincrement())
   grade            String
-  level            String
+  level            Int
   Attendance       Attendance[]
-  ClassroomSubject ClassroomSubject[]
+  classroomSubject ClassroomSubject[]
 }
 
 model Subject {
   id               Int                @id @default(autoincrement())
   name             String
   Attendance       Attendance[]
-  ClassroomSubject ClassroomSubject[]
+  classroomSubject ClassroomSubject[]
 }
 
 model ClassroomSubject {
-  id          Int       @id @default(autoincrement())
-  classroom   Classroom @relation(fields: [classroomId], references: [id])
-  classroomId Int
-  subject     Subject   @relation(fields: [subjectId], references: [id])
-  subjectId   Int
+  id                      Int                       @id @default(autoincrement())
+  classroom               Classroom                 @relation(fields: [classroomId], references: [id])
+  classroomId             Int
+  subject                 Subject                   @relation(fields: [subjectId], references: [id])
+  subjectId               Int
+  classroomSubjectStudent ClassroomSubjectStudent[]
+  ClassroomSubjectTeacher ClassroomSubjectTeacher[]
 
   @@unique([classroomId, subjectId])
+}
+
+model ClassroomSubjectTeacher {
+  id                 Int              @id @default(autoincrement())
+  classroomSubject   ClassroomSubject @relation(fields: [classroomSubjectId], references: [id])
+  classroomSubjectId Int
+  teacher            User             @relation(fields: [teacherId], references: [id])
+  teacherId          Int
+
+  @@unique([classroomSubjectId, teacherId])
+}
+
+model ClassroomSubjectStudent {
+  id                 Int              @id @default(autoincrement())
+  classroomSubject   ClassroomSubject @relation(fields: [classroomSubjectId], references: [id])
+  classroomSubjectId Int
+  student            Student          @relation(fields: [studentId], references: [id])
+  studentId          Int
+
+  @@unique([classroomSubjectId, studentId])
 }
 
 model Attendance {
@@ -98,7 +129,7 @@ model Attendance {
   subjectId        Int
   teacher          User               @relation(fields: [teacherId], references: [id])
   teacherId        Int
-  AttendanceDetail AttendanceDetail[]
+  attendanceDetail AttendanceDetail[]
 }
 
 model AttendanceDetail {

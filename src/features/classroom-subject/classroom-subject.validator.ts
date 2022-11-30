@@ -1,10 +1,10 @@
 import { ClassroomSubject } from '@prisma/client';
-import { IsString } from 'class-validator';
+import { IsNumber } from 'class-validator';
 
 export class ClassroomSubjectValidator implements Omit<ClassroomSubject, 'id'> {
-  @IsString()
+  @IsNumber()
   classroomId!: number;
-  
-  @IsString()
+
+  @IsNumber()
   subjectId!: number;
 }

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ClassroomService } from './classroom.service';
 
 export class ClassroomController {
-  constructor(private classroomService: ClassroomService) { }
+  constructor(private classroomService: ClassroomService) {}
 
   async getAll(req: Request, res: Response) {
     const records = await this.classroomService.getAll();
@@ -20,10 +20,7 @@ export class ClassroomController {
   }
 
   async update(req: Request, res: Response) {
-    const record = await this.classroomService.update(
-      +req.params.id,
-      req.body
-    );
+    const record = await this.classroomService.update(+req.params.id, req.body);
     res.json(record);
   }
 

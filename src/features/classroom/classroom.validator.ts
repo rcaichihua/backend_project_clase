@@ -1,10 +1,15 @@
 import { Classroom } from '@prisma/client';
-import { IsString } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 
+enum Level {
+  early,
+  primary,
+  secondary,
+}
 export class ClassroomValidator implements Omit<Classroom, 'id'> {
   @IsString()
   grade!: string;
 
-  @IsString()
-  level!: string;
+  @IsEnum(Level)
+  level!: Level;
 }

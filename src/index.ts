@@ -12,6 +12,8 @@ import { ErrorHandlerMiddleware } from './common/middleware/error-handler.middle
 import { ClassroomRouter } from './features/classroom/classroom.router';
 import { SubjectRouter } from './features/subject/subject.router';
 import { ClassroomSubjectRouter } from './features/classroom-subject/classroom-subject.router';
+import { ClassroomSubjectTeacherRouter } from './features/classroom-subject-teacher/classroom-subject-teacher.router';
+import { ClassroomSubjectStudentRouter } from './features/classroom-subject-student/classroom-subject-student.router';
 
 const app = express();
 const port = 3000;
@@ -33,6 +35,16 @@ app.use('/api/rols', AuthMiddleware, RolRouter);
 app.use('/api/classrooms', AuthMiddleware, ClassroomRouter);
 app.use('/api/subjects', AuthMiddleware, SubjectRouter);
 app.use('/api/classrooms/subjects', AuthMiddleware, ClassroomSubjectRouter);
+app.use(
+  '/api/classrooms/subjects/teachers',
+  AuthMiddleware,
+  ClassroomSubjectTeacherRouter
+);
+app.use(
+  '/api/classrooms/subjects/students',
+  AuthMiddleware,
+  ClassroomSubjectStudentRouter
+);
 
 /**
  * Error Handler
