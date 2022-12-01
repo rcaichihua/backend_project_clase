@@ -71,20 +71,19 @@ model Student {
   firstName               String
   lastName                String
   classroomSubjectStudent ClassroomSubjectStudent[]
+  attendanceDetail        AttendanceDetail[]
 }
 
 model Classroom {
   id               Int                @id @default(autoincrement())
   grade            String
   level            Int
-  Attendance       Attendance[]
   classroomSubject ClassroomSubject[]
 }
 
 model Subject {
   id               Int                @id @default(autoincrement())
   name             String
-  Attendance       Attendance[]
   classroomSubject ClassroomSubject[]
 }
 
@@ -95,7 +94,8 @@ model ClassroomSubject {
   subject                 Subject                   @relation(fields: [subjectId], references: [id])
   subjectId               Int
   classroomSubjectStudent ClassroomSubjectStudent[]
-  ClassroomSubjectTeacher ClassroomSubjectTeacher[]
+  classroomSubjectTeacher ClassroomSubjectTeacher[]
+  attendance              Attendance[]
 
   @@unique([classroomId, subjectId])
 }
@@ -121,19 +121,20 @@ model ClassroomSubjectStudent {
 }
 
 model Attendance {
-  id               Int                @id @default(autoincrement())
-  date             DateTime
-  classroom        Classroom          @relation(fields: [classroomId], references: [id])
-  classroomId      Int
-  subject          Subject            @relation(fields: [subjectId], references: [id])
-  subjectId        Int
-  teacher          User               @relation(fields: [teacherId], references: [id])
-  teacherId        Int
-  attendanceDetail AttendanceDetail[]
+  id                 Int                @id @default(autoincrement())
+  date               DateTime
+  classroomSubject   ClassroomSubject   @relation(fields: [classroomSubjectId], references: [id])
+  classroomSubjectId Int
+  teacher            User               @relation(fields: [teacherId], references: [id])
+  teacherId          Int
+  attendanceDetail   AttendanceDetail[]
 }
 
 model AttendanceDetail {
   id           Int        @id @default(autoincrement())
   attendance   Attendance @relation(fields: [attendanceId], references: [id])
   attendanceId Int
+  student      Student    @relation(fields: [studentId], references: [id])
+  studentId    Int
+  status       String
 }

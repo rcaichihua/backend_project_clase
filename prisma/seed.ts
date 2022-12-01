@@ -37,6 +37,7 @@ const getPermissions = (): Omit<Permission, 'id'>[] => {
     'CLASSROOM_SUBJECT',
     'CLASSROOM_SUBJECT_TEACHER',
     'CLASSROOM_SUBJECT_STUDENT',
+    'ATTENDANCE',
   ];
   const permissionList: string[] = [];
 
