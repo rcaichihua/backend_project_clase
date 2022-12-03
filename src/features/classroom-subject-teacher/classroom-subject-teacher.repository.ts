@@ -5,6 +5,7 @@ const select = {
   id: true,
   classroomSubject: {
     select: {
+      id: true,
       classroom: {
         select: {
           grade: true,

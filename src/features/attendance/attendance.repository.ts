@@ -9,6 +9,7 @@ export class AttendanceRepository {
         date: true,
         classroomSubject: {
           select: {
+            id: true,
             classroom: true,
             subject: true,
           },
@@ -21,6 +22,13 @@ export class AttendanceRepository {
     return await DB.attendance.findUnique({
       where: { id },
       include: {
+        classroomSubject: {
+          select: {
+            id: true,
+            classroom: true,
+            subject: true,
+          },
+        },
         attendanceDetail: {
           orderBy: [
             {
