@@ -41,6 +41,7 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
+    "esbuild": "^0.16.4",
     "esbuild-register": "^3.3.3",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
