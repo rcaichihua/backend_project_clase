@@ -56,6 +56,19 @@ const permissionSelect = {
   },
 };
 
+const classroomSubjectTeacherSelect = {
+  classroomSubjectTeacher: {
+    select: {
+      classroomSubject: {
+        select: {
+          classroom: true,
+          subject: true,
+        },
+      },
+    },
+  },
+};
+
 export class UserRepository {
   async getAll() {
     return await DB.user.findMany({
@@ -70,6 +83,7 @@ export class UserRepository {
         ...select,
         ...rolSelect,
         ...permissionSelect,
+        ...classroomSubjectTeacherSelect,
       },
     });
   }
@@ -97,7 +111,8 @@ export class UserRepository {
   async create(
     body: Omit<User, 'id'>,
     permissionIds: number[],
-    rolIds: number[]
+    rolIds: number[],
+    classroomSubjectIds: number[]
   ) {
     return await DB.user.create({
       data: {
@@ -108,11 +123,17 @@ export class UserRepository {
         userPermission: {
           create: permissionIds.map((permissionId) => ({ permissionId })),
         },
+        classroomSubjectTeacher: {
+          create: classroomSubjectIds.map((classroomSubjectId) => ({
+            classroomSubjectId,
+          })),
+        },
       },
       select: {
         ...select,
         ...rolSelect,
         ...permissionSelect,
+        ...classroomSubjectTeacherSelect,
       },
     });
   }
@@ -121,7 +142,8 @@ export class UserRepository {
     id: number,
     body: Omit<User, 'id'>,
     permissionIds: number[],
-    rolIds: number[]
+    rolIds: number[],
+    classroomSubjectIds: number[]
   ) {
     return await DB.user.update({
       where: {
@@ -137,11 +159,18 @@ export class UserRepository {
           deleteMany: {},
           create: permissionIds.map((permissionId) => ({ permissionId })),
         },
+        classroomSubjectTeacher: {
+          deleteMany: {},
+          create: classroomSubjectIds.map((classroomSubjectId) => ({
+            classroomSubjectId,
+          })),
+        },
       },
       select: {
         ...select,
         ...rolSelect,
         ...permissionSelect,
+        ...classroomSubjectTeacherSelect,
       },
     });
   }

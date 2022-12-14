@@ -1,5 +1,12 @@
 import { Classroom } from '@prisma/client';
-import { IsEnum, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsEnum,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 
 enum Level {
   early,
@@ -12,4 +19,9 @@ export class ClassroomValidator implements Omit<Classroom, 'id'> {
 
   @IsEnum(Level)
   level!: Level;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => IsNumber)
+  subjectIds!: number[];
 }

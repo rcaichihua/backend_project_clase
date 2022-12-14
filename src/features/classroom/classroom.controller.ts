@@ -15,12 +15,18 @@ export class ClassroomController {
   }
 
   async create(req: Request, res: Response) {
-    const record = await this.classroomService.create(req.body);
+    const { subjectIds, ...student } = req.body;
+    const record = await this.classroomService.create(student, subjectIds);
     res.json(record);
   }
 
   async update(req: Request, res: Response) {
-    const record = await this.classroomService.update(+req.params.id, req.body);
+    const { subjectIds, ...student } = req.body;
+    const record = await this.classroomService.update(
+      +req.params.id,
+      student,
+      subjectIds
+    );
     res.json(record);
   }
 

@@ -4,68 +4,34 @@ import { DB } from '../../db';
 const select = {
   id: true,
   dni: true,
-  email: true,
   firstName: true,
   lastName: true,
-  isSuperuser: true,
 };
 
-const authSelect = {
-  password: true,
-  userRol: {
+const selectClassroomSubjectStudent = {
+  classroomSubjectStudent: {
     select: {
-      rol: {
+      classroomSubject: {
         select: {
-          rolPermission: {
-            select: {
-              permission: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  userPermission: {
-    select: {
-      permission: {
-        select: {
-          name: true,
+          classroom: true,
+          subject: true,
         },
       },
     },
   },
 };
-
-const rolSelect = {
-  userRol: {
-    select: {
-      rol: true,
-    },
-  },
-};
-
-const permissionSelect = {
-  userPermission: {
-    select: {
-      permission: true,
-    },
-  },
-};
-
 export class StudentRepository {
   async getAll() {
-    return await DB.student.findMany({
-      select,
-    });
+    return await DB.student.findMany();
   }
 
   async getById(id: number) {
     return await DB.student.findUnique({
       where: { id },
+      select: {
+        ...select,
+        ...selectClassroomSubjectStudent,
+      },
     });
   }
 
@@ -78,6 +44,10 @@ export class StudentRepository {
             classroomSubjectId,
           })),
         },
+      },
+      select: {
+        ...select,
+        ...selectClassroomSubjectStudent,
       },
     });
   }
@@ -100,6 +70,10 @@ export class StudentRepository {
           })),
         },
       },
+      select: {
+        ...select,
+        ...selectClassroomSubjectStudent,
+      },
     });
   }
 
@@ -118,7 +92,6 @@ export class StudentRepository {
       where: {
         id,
       },
-      select,
     });
   }
 }

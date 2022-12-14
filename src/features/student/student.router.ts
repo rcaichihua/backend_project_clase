@@ -3,10 +3,10 @@ import { Router } from 'express';
 import { makeValidateBody } from 'express-class-validator';
 import { PERMISSION } from '../../common/constants/permission';
 import { HasPermissionMiddleware } from '../../common/middleware/has-permission.middleware';
-import { StudentController } from './user.controller';
+import { StudentController } from './student.controller';
 import { StudentRepository } from './student.repository';
 import { StudentService } from './student.service';
-import { UserValidator } from './user.validator';
+import { UserValidator } from './student.validator';
 
 const repository = new StudentRepository();
 const service = new StudentService(repository);

@@ -15,13 +15,13 @@ export class ClassroomService {
     throw new AppError(404, 'Salon no existe');
   }
 
-  async create(classroom: Omit<Classroom, 'id'>) {
-    const record = await this.classroomRepository.create(classroom);
+  async create(body: Omit<Classroom, 'id'>, subjectIds: number[]) {
+    const record = await this.classroomRepository.create(body, subjectIds);
     return record;
   }
 
-  async update(id: number, classroom: Omit<Classroom, 'id'>) {
-    const record = await this.classroomRepository.update(id, classroom);
+  async update(id: number, body: Omit<Classroom, 'id'>, subjectIds: number[]) {
+    const record = await this.classroomRepository.update(id, body, subjectIds);
     return record;
   }
 

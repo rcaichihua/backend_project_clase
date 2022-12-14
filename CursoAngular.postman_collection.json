@@ -374,13 +374,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/classrooms/1",
+							"raw": "{{baseUrl}}/classrooms/11",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"classrooms",
-								"1"
+								"11"
 							]
 						}
 					},
@@ -403,7 +403,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"grade\": \"1A\",\n    \"level\": 1\n}",
+							"raw": "{\n    \"grade\": \"1A\",\n    \"level\": 1,\n    \"subjectIds\": [1]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -439,7 +439,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"grade\": \"1A\",\n    \"level\": 1\n}",
+							"raw": "{\n    \"grade\": \"1A\",\n    \"level\": 1,\n    \"subjectIds\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -447,13 +447,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/classrooms/12",
+							"raw": "{{baseUrl}}/classrooms/14",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"classrooms",
-								"12"
+								"14"
 							]
 						}
 					},
@@ -651,6 +651,167 @@
 			]
 		},
 		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"11188899\",\n    \"firstName\": \"Luis\",\n    \"lastName\": \"Vilcarromero\",\n    \"classroomSubjectIds\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/students",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dni\": \"11188899\",\n    \"firstName\": \"Luis\",\n    \"lastName\": \"Vilcarromero\",\n    \"classroomSubjectIds\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/students/52",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students/52",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students",
+								"52"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Attendance",
 			"item": [
 				{
@@ -696,13 +857,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/attendance/2",
+							"raw": "{{baseUrl}}/attendance/1",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"attendance",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -1192,7 +1353,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"dni\": \"18273645\",\n  \"email\": \"luis1@luis.com\",\n  \"firstName\": \"Luis\",\n  \"lastName\": \"Luis\",\n  \"isSuperuser\": true,\n  \"permissions\": [2,3],\n  \"rols\": [1]\n}\n",
+							"raw": "{\n  \"dni\": \"18273645\",\n  \"email\": \"luis1@luis.com\",\n  \"firstName\": \"Luis\",\n  \"lastName\": \"Luis\",\n  \"isSuperuser\": true,\n  \"permissions\": [2,3],\n  \"rols\": [1],\n  \"classroomSubjectIds\": [1]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1228,7 +1389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"dni\": \"18273645\",\n  \"email\": \"luis@luis.com\",\n  \"firstName\": \"Luis\",\n  \"lastName\": \"Luis\",\n  \"isSuperuser\": true,\n  \"permissions\": [3,4],\n  \"rols\": [1]\n}\n",
+							"raw": "{\n  \"dni\": \"18273645\",\n  \"email\": \"luis@luis.com\",\n  \"firstName\": \"Luis\",\n  \"lastName\": \"Luis\",\n  \"isSuperuser\": true,\n  \"permissions\": [3,4],\n  \"rols\": [1],\n  \"classroomSubjectIds\": [1]\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"

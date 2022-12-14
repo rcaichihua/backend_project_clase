@@ -15,18 +15,24 @@ export class UserController {
   }
 
   async create(req: Request, res: Response) {
-    const { permissions, rols, ...user } = req.body;
-    const record = await this.userService.create(user, permissions, rols);
+    const { classroomSubjectIds, permissions, rols, ...user } = req.body;
+    const record = await this.userService.create(
+      user,
+      permissions,
+      rols,
+      classroomSubjectIds || []
+    );
     res.json(record);
   }
 
   async update(req: Request, res: Response) {
-    const { permissions, rols, ...user } = req.body;
+    const { classroomSubjectIds, permissions, rols, ...user } = req.body;
     const record = await this.userService.update(
       +req.params.id,
       user,
       permissions,
-      rols
+      rols,
+      classroomSubjectIds || []
     );
     res.json(record);
   }

@@ -15,6 +15,7 @@ import { ClassroomSubjectRouter } from './features/classroom-subject/classroom-s
 import { ClassroomSubjectTeacherRouter } from './features/classroom-subject-teacher/classroom-subject-teacher.router';
 import { ClassroomSubjectStudentRouter } from './features/classroom-subject-student/classroom-subject-student.router';
 import { AttendanceRouter } from './features/attendance/attendance.router';
+import { StudentRouter } from './features/student/student.router';
 
 const app = express();
 const port = 3000;
@@ -35,6 +36,7 @@ app.use('/api/permissions', AuthMiddleware, PermissionRouter);
 app.use('/api/rols', AuthMiddleware, RolRouter);
 app.use('/api/classrooms', AuthMiddleware, ClassroomRouter);
 app.use('/api/subjects', AuthMiddleware, SubjectRouter);
+app.use('/api/students', AuthMiddleware, StudentRouter);
 app.use('/api/classrooms/subjects', AuthMiddleware, ClassroomSubjectRouter);
 app.use(
   '/api/classrooms/subjects/teachers',

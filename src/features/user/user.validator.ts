@@ -6,6 +6,7 @@ import {
   IsArray,
   ValidateNested,
   IsNumber,
+  IsOptional,
 } from 'class-validator';
 
 export class UserValidator implements Omit<User, 'id' | 'password'> {
@@ -29,4 +30,10 @@ export class UserValidator implements Omit<User, 'id' | 'password'> {
   @ValidateNested({ each: true })
   @Type(() => IsNumber)
   permissions!: number[];
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => IsNumber)
+  @IsOptional()
+  classroomSubjectIds!: number[];
 }

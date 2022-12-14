@@ -45,7 +45,8 @@ export class UserService {
   async create(
     body: Omit<User, 'id' | 'password'>,
     permissionIds: number[],
-    rolIds: number[]
+    rolIds: number[],
+    classroomSubjectIds: number[]
   ) {
     const exist = await this.userRepository.getByEmailWithPermissions(
       body.email
@@ -62,7 +63,8 @@ export class UserService {
     const record = await this.userRepository.create(
       data,
       permissionIds,
-      rolIds
+      rolIds,
+      classroomSubjectIds
     );
     return adapter(record);
   }
@@ -71,13 +73,15 @@ export class UserService {
     id: number,
     body: Omit<User, 'id'>,
     permissionIds: number[],
-    rolIds: number[]
+    rolIds: number[],
+    classroomSubjectIds: number[]
   ) {
     const record = await this.userRepository.update(
       id,
       body,
       permissionIds,
-      rolIds
+      rolIds,
+      classroomSubjectIds
     );
     return adapter(record);
   }
