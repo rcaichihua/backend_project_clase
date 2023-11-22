@@ -18,6 +18,7 @@ model User {
   lastName                String
   password                String
   isSuperuser             Boolean
+  refreshToken  String?
   userPermission          UserPermission[]
   userRol                 UserRol[]
   Attendance              Attendance[]

@@ -6,7 +6,8 @@ import { TokenService } from '../../common/services/token.service';
 import { UserRepository } from '../user/user.repository';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { AuthRefreshTokeValidator, AuthTokenValidator } from './auth.validator';
+import { AuthTokenValidator } from './auth.validator';
+import { RefreshAuthMiddleware } from '../../common/middleware/refresh-auth.middleware';
 
 const userRepository = new UserRepository();
 const service = new AuthService(
@@ -24,6 +25,6 @@ AuthRouter.post(
 );
 AuthRouter.post(
   '/token/refresh',
-  makeValidateBody(AuthRefreshTokeValidator),
+  RefreshAuthMiddleware,
   controller.refreshToken.bind(controller)
 );

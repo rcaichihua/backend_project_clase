@@ -9,7 +9,9 @@ import {
   IsOptional,
 } from 'class-validator';
 
-export class UserValidator implements Omit<User, 'id' | 'password'> {
+export class UserValidator
+  implements Omit<User, 'id' | 'password' | 'refreshToken'>
+{
   @IsString()
   dni!: string;
   @IsString()

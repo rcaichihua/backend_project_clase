@@ -6,8 +6,3 @@ export class AuthTokenValidator {
   @IsString()
   password!: string;
 }
-
-export class AuthRefreshTokeValidator {
-  @IsString()
-  refresh!: string;
-}

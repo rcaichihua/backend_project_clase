@@ -10,9 +10,7 @@ export class AuthController {
   }
 
   async refreshToken(req: Request, res: Response) {
-    const response = await this.authService.refreshAccessToken(
-      req.body.refresh
-    );
+    const response = await this.authService.refreshAccessToken(req.userId!);
     res.json(response);
   }
 }

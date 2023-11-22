@@ -88,6 +88,15 @@ export class UserRepository {
     });
   }
 
+  async getRefreshTokenById(id: number) {
+    return await DB.user.findUnique({
+      where: { id },
+      select: {
+        refreshToken: true,
+      },
+    });
+  }
+
   async getByIdWithPermissions(id: number) {
     return await DB.user.findUnique({
       where: { id },
@@ -171,6 +180,17 @@ export class UserRepository {
         ...rolSelect,
         ...permissionSelect,
         ...classroomSubjectTeacherSelect,
+      },
+    });
+  }
+
+  async updateRefreshToken(id: number, refreshToken: string) {
+    return await DB.user.update({
+      where: {
+        id,
+      },
+      data: {
+        refreshToken,
       },
     });
   }

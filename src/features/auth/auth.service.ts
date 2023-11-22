@@ -47,31 +47,17 @@ export class AuthService {
       isSuperuser: user.isSuperuser,
       permissions: [...permissions],
     });
+
     const refresh = this.tokenService.getRefreshToken({ userId: user.id });
+
+    await this.userRepository.updateRefreshToken(user.id, refresh);
 
     return { access, refresh };
   }
 
-  async refreshAccessToken(refreshToken: string) {
-    const decodedToken = this.tokenService.verify(refreshToken);
-
-    if (!decodedToken) {
-      throw new AppError(403, 'Token invalido');
-    }
-
-    const isRefreshToken = this.tokenService.isRefreshToken(decodedToken);
-
-    if (!isRefreshToken) {
-      throw new AppError(403, 'Tipo de token invalido');
-    }
-
-    const user = await this.userRepository.getByIdWithPermissions(
-      decodedToken.userId
-    );
-
-    if (!user) {
-      throw new AppError(404, 'Usuario no existe');
-    }
+  async refreshAccessToken(userId: number) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const user = (await this.userRepository.getByIdWithPermissions(userId))!;
 
     const permissions = new Set();
 
@@ -86,12 +72,16 @@ export class AuthService {
     );
 
     const access = this.tokenService.getAccessToken({
-      userId: decodedToken.userId,
+      userId: user.id,
       fullname: `${user.firstName} ${user.lastName}`,
       isSuperuser: user.isSuperuser,
       permissions: [...permissions],
     });
 
-    return { access };
+    const refresh = this.tokenService.getRefreshToken({ userId: user.id });
+
+    await this.userRepository.updateRefreshToken(user.id, refresh);
+
+    return { access, refresh };
   }
 }
